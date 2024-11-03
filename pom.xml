@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.MainClass</mainClass>
+                            <mainClass>com.example.tuan7</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
