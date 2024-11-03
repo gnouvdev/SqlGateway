@@ -1,15 +1,13 @@
-FROM maven:3-openjdk-17 AS build
-WORKDIR /app
+# Sử dụng image Tomcat
+FROM tomcat:9.0-jdk17
 
-COPY . .
-RUN mvn clean package -DskipTests
+# Thư mục làm việc
+WORKDIR /usr/local/tomcat/webapps/
 
+# Sao chép file .war vào thư mục webapps của Tomcat
+COPY target/Tuan8-1.0-SNAPSHOT.war Tuan8.war
 
-# Run stage
+# Mở cổng 8080
+EXPOSE 8080
 
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-
-COPY --from=build /app/target/Tuan8-1.0-SNAPSHOT.war sqlgateway.war
-
-ENTRYPOINT ["java","-jar","sqlgateway.war"]
+# Tomcat sẽ tự động deploy file .war
