@@ -10,6 +10,6 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-COPY --from=build /app/target/Tuan8-1.0-SNAPSHOT.war Tuan7.wargỉ
+COPY --from=build /app/target/Tuan8-1.0-SNAPSHOT.war sqlgateway.wargỉ
 
-ENTRYPOINT ["java","-jar","Tuan7.war"]
+ENTRYPOINT ["java","-jar","sqlgateway.war"]
