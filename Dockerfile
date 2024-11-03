@@ -1,8 +1,15 @@
-FROM maven:3-openjdk-17
+FROM maven:3-openjdk-17 AS build
 WORKDIR /app
 
 COPY . .
 RUN mvn clean package -DskipTests
 
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","target/Tuan7.war"]
+
+# Run stage
+
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+
+COPY --from=build /app/target/Tuan7.war Tuan7.war
+
+ENTRYPOINT ["java","-jar","Tuan7.war"]
